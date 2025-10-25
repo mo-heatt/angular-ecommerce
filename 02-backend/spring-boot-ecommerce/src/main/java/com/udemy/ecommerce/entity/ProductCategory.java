@@ -1,11 +1,14 @@
 package com.udemy.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
 
+@NoArgsConstructor
 @Entity
 @Table(name = "product_category")
 @Getter
@@ -21,5 +24,6 @@ public class ProductCategory {
     private String categoryName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @JsonIgnoreProperties("category")
     private Set<Product> products;
 }
